@@ -1,34 +1,11 @@
-#!/usr/bin/env python
-"""
-Conversational AI using meta-llama/Llama-3.3-70B-Instruct
-
-This script demonstrates how to build a simple conversational AI application using Hugging Face's
-transformers library and the meta-llama/Llama-3.3-70B-Instruct model. The script loads the pre-trained model,
-sets up a conversation loop, and generates responses to user inputs. This is ideal for chatbots, virtual assistants,
-or interactive systems requiring dynamic dialogue.
-
-Requirements:
-    - Python 3.8+
-    - transformers (see requirements.txt)
-    - torch (see requirements.txt)
-    
-Note:
-    The meta-llama/Llama-3.3-70B-Instruct model is gated and requires authentication.
-    Replace 'your_token_here' with your actual Hugging Face token or set it to True if you have 
-    already authenticated via the Hugging Face CLI (huggingface-cli login).
-
-    Due to the model's size (70B parameters), ensure your hardware (typically a high-memory GPU)
-    meets the requirements.
-"""
-
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # Set your authentication token here:
 auth_token = "your_token_here"  # Replace with your Hugging Face token or set to True if using CLI auth
 
 # Load the tokenizer and model from the Hugging Face model hub with authentication
-tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.3-70B-Instruct", use_auth_token=auth_token)
-model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.3-70B-Instruct", use_auth_token=auth_token)
+tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-4-Maverick-17B-128E", use_auth_token=auth_token)
+model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-4-Maverick-17B-128E", use_auth_token=auth_token)
 
 def generate_response(conversation_history: str, max_new_tokens: int = 150, temperature: float = 0.7) -> str:
     """
@@ -58,7 +35,7 @@ def generate_response(conversation_history: str, max_new_tokens: int = 150, temp
         do_sample=True,
         temperature=temperature,
         top_p=0.95,             # Nucleus sampling for diverse outputs
-        repetition_penalty=1.1, # Helps reduce repetitive text
+        repetition of1.1, # Helps reduce repetitive text
     )
     
     # Decode the generated tokens to a string
